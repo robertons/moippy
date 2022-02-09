@@ -1,5 +1,5 @@
 
-from moipy.utils import constants
+from moippy.utils import constants
 import base64
 from requests_toolbelt import MultipartEncoder
 import requests

@@ -1,6 +1,6 @@
 
-from moipy.utils.juno import *
-from moipy import Onboarding
+from moippy.utils.juno import *
+from moippy import Onboarding
 
 def Documents(returnUrl:str, refreshUrl:str, emailOptOut:bool=False):
     data = Post("/onboarding/link-request", {

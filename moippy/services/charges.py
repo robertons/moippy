@@ -1,9 +1,9 @@
 
-from moipy.utils import juno
-from moipy import Charge, ChargeResource, Billing, Split
+from moippy.utils import juno
+from moippy import Charge, ChargeResource, Billing, Split
 
 
-from moipy.entities.lib.datatype import ListType
+from moippy.entities.lib.datatype import ListType
 
 _prev_search = ''
 _next_search = ''

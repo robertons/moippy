@@ -8,12 +8,12 @@ with open('requirements.txt') as reqs:
     requirements = reqs.read().split()
 
 setuptools.setup(
-    name='moipy',
+    name='moippy',
     version='0.0.1',
     description='SDK Python3 para Integração com Moip/Wirecard  API V2',
     author='Roberto Neves',
     author_email='robertonsilva@gmail.com',
-    url='https://github.com/robertons/moipy',
+    url='https://github.com/robertons/moippy',
     packages=setuptools.find_packages(),
     install_requires=requirements,
     long_description=readme,

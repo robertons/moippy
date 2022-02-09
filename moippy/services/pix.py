@@ -1,6 +1,6 @@
 
-from moipy.utils.juno import *
-from moipy import Pix
+from moippy.utils.juno import *
+from moippy import Pix
 
 
 def Keys(idempotency: str, type: str = "RANDOM_KEY", key: str = ""):

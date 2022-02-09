@@ -1,6 +1,6 @@
 
-from moipy.utils.juno import *
-from moipy import Transfer, BankAccount
+from moippy.utils.juno import *
+from moippy import Transfer, BankAccount
 
 
 def Default(amount: float, digitalAccountId=None, resourceToken=None):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .lib import *
-from moipy.entities.lib.datatype import ListType
+from moippy.entities.lib.datatype import ListType
 
 class Document(JunoEntity):
 
@@ -29,7 +29,7 @@ class Document(JunoEntity):
 			return self
 		else:
 			data = Get(self.__route__, {'resourceToken': self.resourceToken})
-			_type = getattr(__import__('moipy.entities.document', fromlist=['Document']), 'Document')
+			_type = getattr(__import__('moippy.entities.document', fromlist=['Document']), 'Document')
 			return ListType(_type).add([_type(**item) for item in data['_embedded']['documents']]) if '_embedded' in data else ListType(_type)
 
 	def SendFiles(self, files:list):

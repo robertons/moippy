@@ -1,7 +1,7 @@
 
-from moipy.utils import juno
-from moipy import PaymentResource, CreditCard, Billing
-from moipy.entities.lib.datatype import ListType
+from moippy.utils import juno
+from moippy import PaymentResource, CreditCard, Billing
+from moippy.entities.lib.datatype import ListType
 
 
 def Create(chargeId: str, creditcard: CreditCard, billing: Billing):

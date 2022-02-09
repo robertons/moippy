@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 import json
-import moipy
+import moippy
 import sys
 
 
 def main(arg):
 
-    moipy.Juno('4E1574938F3DD69306BC336E348276ACC9CBE72B4E8396B2520436663C66C08E',
+    moippy.Juno('4E1574938F3DD69306BC336E348276ACC9CBE72B4E8396B2520436663C66C08E',
                 '9OuOfYM2QZRhmUug', 'gw<Nl6bc2Ib,VX&)c2U{mX1?d_zEg0^d', sandbox=True)
 
-    conta = moipy.DigitalAccount(
+    conta = moippy.DigitalAccount(
         type="PAYMENT",
         name="Usuario Teste",
         motherName="Nome Mãe Usuario",
@@ -20,7 +20,7 @@ def main(arg):
         phone="99999999999",
         businessArea=2015,
         linesOfBusiness="Pessoa Física - Digital Influencer",
-        address=moipy.Address(
+        address=moippy.Address(
             street='Rua',
             number='Numero',
             complement='Complemento',
@@ -28,13 +28,13 @@ def main(arg):
             city='Cidade',
             state='UF',
             postCode='29000000'),
-        bankAccount=moipy.BankAccount(
+        bankAccount=moippy.BankAccount(
             bankNumber="000",
             agencyNumber="0000",
             accountNumber="000000000",
             accountComplementNumber="0",
             accountType="CHECKING",
-            accountHolder=moipy.AccountHolder(name="Usuario Teste", document='00000000000')),
+            accountHolder=moippy.AccountHolder(name="Usuario Teste", document='00000000000')),
         emailOptOut=False,
         autoTransfer=False,
         socialName=False

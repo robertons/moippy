@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import moipy
+import moippy
 import uuid
 import json
 import sys
@@ -7,11 +7,11 @@ import sys
 
 def main(arg):
 
-    moipy.Juno('4E1574938F3DD69306BC336E348276ACC9CBE72B4E8396B2520436663C66C08E',
+    moippy.Juno('4E1574938F3DD69306BC336E348276ACC9CBE72B4E8396B2520436663C66C08E',
                 '9OuOfYM2QZRhmUug', 'gw<Nl6bc2Ib,VX&)c2U{mX1?d_zEg0^d', sandbox=True)
 
     # PLANO
-    pix = moipy.pix.StaticQRCode(
+    pix = moippy.pix.StaticQRCode(
         idempotency='d63313cd-d01a-4091-b352-182a0a96baca',
         key='06c4e6fe-48cb-4263-89a3-c8bc342ce65e',
         includeImage=True,

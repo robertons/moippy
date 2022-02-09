@@ -7,17 +7,17 @@ Esta SDK foi desenvolvida para abstrair aos desenvolvedores os principais detalh
 
 Você pode acessar a documentação base da api aqui: [Docs Api Moip](https://docs.moip.com.br/).
 
-![Licença](https://img.shields.io/github/license/robertons/moipy) ![image](https://img.shields.io/pypi/v/moipy) ![image](https://img.shields.io/pypi/status/moipy) ![image](https://img.shields.io/badge/python-v3.7-blue) ![image](https://img.shields.io/badge/build-passing-brightgreen) ![image](https://img.shields.io/badge/coverage-100%25-brightgreen) ![image](https://img.shields.io/github/last-commit/robertons/moipy)
+![Licença](https://img.shields.io/github/license/robertons/moippy) ![image](https://img.shields.io/pypi/v/moippy) ![image](https://img.shields.io/pypi/status/moippy) ![image](https://img.shields.io/badge/python-v3.7-blue) ![image](https://img.shields.io/badge/build-passing-brightgreen) ![image](https://img.shields.io/badge/coverage-100%25-brightgreen) ![image](https://img.shields.io/github/last-commit/robertons/moippy)
 
 # Instalação
 Instalação utilizando Pip
 ```bash
-pip install moipy
+pip install moippy
 ```
 Git/Clone
 ```
-git clone https://github.com/robertons/moipy
-cd moipy
+git clone https://github.com/robertons/moippy
+cd moippy
 pip install -r requirements.txt
 python setup.py install
 ```

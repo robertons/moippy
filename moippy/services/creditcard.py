@@ -1,6 +1,6 @@
 
-from moipy.utils.juno import *
-from moipy import CreditCard
+from moippy.utils.juno import *
+from moippy import CreditCard
 
 
 def Tokenize(hash: str):

@@ -1,5 +1,5 @@
 
-from moipy.utils.juno import *
+from moippy.utils.juno import *
 
 
 def Balance(resourceToken=None):

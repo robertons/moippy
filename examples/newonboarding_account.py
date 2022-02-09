@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 import json
 import sys
-import moipy
+import moippy
 
 
 def main(arg):
 
-    moipy.Juno('4E1574938F3DD69306BC336E348276ACC9CBE72B4E8396B2520436663C66C08E',
+    moippy.Juno('4E1574938F3DD69306BC336E348276ACC9CBE72B4E8396B2520436663C66C08E',
                 '9OuOfYM2QZRhmUug', 'gw<Nl6bc2Ib,VX&)c2U{mX1?d_zEg0^d', sandbox=True)
 
-    onboarding = moipy.onboarding.Account(
+    onboarding = moippy.onboarding.Account(
         referenceId='id_proprio',
         returnUrl="https://www.website.com.br/documents",
         refreshUrl="https://www.website.com.br/invalid"

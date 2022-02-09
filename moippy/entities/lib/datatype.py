@@ -19,7 +19,7 @@ class ValidateValue:
                 self.type = int
             else:
                 self.type = getattr(__import__(
-                    f'moipy.entities.{name.lower()}', fromlist=[name]), name)
+                    f'moippy.entities.{name.lower()}', fromlist=[name]), name)
         else:
             self.type = None
         self.format = format

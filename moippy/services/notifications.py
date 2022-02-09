@@ -1,7 +1,7 @@
 
-from moipy.utils.juno import *
-from moipy import EventType, Webhook
-from moipy.entities.lib.datatype import ListType
+from moippy.utils.juno import *
+from moippy import EventType, Webhook
+from moippy.entities.lib.datatype import ListType
 
 
 def EventTypes():

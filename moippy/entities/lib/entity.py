@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from .datatype import *
-from moipy.utils.juno import *
+from moippy.utils.juno import *
 
 __methods__ = ['toJSON', 'load', 'add', 'Create', 'Update', 'Get',
                'Delete', 'Deactivate', 'Reactivate', 'Cancel', 'Complete', 'SendFiles']

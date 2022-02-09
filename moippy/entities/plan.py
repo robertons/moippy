@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .lib import *
-from moipy.entities.lib.datatype import ListType
+from moippy.entities.lib.datatype import ListType
 
 
 class Plan(JunoEntity):
@@ -29,7 +29,7 @@ class Plan(JunoEntity):
             return self
         else:
             data = Get(self.__route__, None)
-            _type = getattr(__import__('moipy.entities.plan', fromlist=['Plan']), 'Plan')
+            _type = getattr(__import__('moippy.entities.plan', fromlist=['Plan']), 'Plan')
             return ListType(_type).add([_type(**item) for item in data['_embedded']['plans']]) if '_embedded' in data else ListType(_type)
 
     def Deactivate(self):

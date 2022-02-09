@@ -1,5 +1,5 @@
 
-from moipy.utils.juno import *
+from moippy.utils.juno import *
 
 import hmac
 import hashlib
