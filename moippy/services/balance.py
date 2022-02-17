@@ -1,14 +1,10 @@
 
-from moippy.utils.juno import *
+from moippy.utils.moip import *
+from moippy import BankAccount
+from moippy.entities.lib.datatype import ListType
 
-
-def Balance(resourceToken=None):
-    if resourceToken is None:
-        data = Get("/balance")
-    else:
-        data = Get("/balance", {'resourceToken': resourceToken})
-    try:
-        del data['_links']
-    except Exception as e:
-        pass
-    return data
+def Balance():
+    data = Get(f"/balances")
+    for item in data:
+        del item['_links']
+    return data[0]

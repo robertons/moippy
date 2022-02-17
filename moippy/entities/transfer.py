@@ -1,24 +1,33 @@
 # -*- coding: utf-8 -*-
 from .lib import *
 
-class Transfer(JunoEntity):
+class Transfer(MoipEntity):
 
 	def __init__(cls, **kw):
 
 		cls.__route__ = '/transfers'
 		cls.__metadata__ = {}
-
-		# FIELDS
-		cls.id = String(max=80)
-		cls.type = String(default="DEFAULT_BANK_ACCOUNT", required=True)
-		cls.name = String(max=80, required=True)
-		cls.document = String(max=14, required=True)
-		cls.amount = Float()
-		cls.bankAccount = Obj(context=cls, key='bankAccount', name='BankAccount')
-		cls.creationDate = DateTime(format="iso")
-		cls.transferDate = DateTime(format="iso")
-		cls.digitalAccountId = String(max=80, required=True)
-		cls.status = String(max=40)
-		cls.recipient = Obj(context=cls, key='recipient', name='Recipient')
+		cls.__requireid__ = True
 		
+		# FIELDS
+		cls.id = String(max=155)
+		cls.ownId = String(max=155)
+		cls.fee = Int()
+		cls.amount = Int()
+		cls.description = String(max=255)
+		cls.status = String(max=155)
+		cls.role = String(max=50)
+		cls.transferInstrument =  Obj(context=cls, key='transferInstrument', name='TransferInstrument')
+		cls.events =  ObjList(context=cls, key='events', name='Event')
+		cls.cancellationDetails = Obj(context=cls, key='cancellationDetails', name='CancellationDetails')
+		cls.entries =  ObjList(context=cls, key='entries', name='Entrie')
+		cls.createdAt = String(max=155)
+		cls.updatedAt = String(max=155)
+		cls._links = Dict()
+
 		super().__init__(**kw)
+
+	def Reverse(self, transfer_id:str):
+		data = Post(f"transfers/{transfer_id}/reverse", {})
+		self.load(**data)
+		return self

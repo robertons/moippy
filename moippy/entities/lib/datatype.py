@@ -56,7 +56,10 @@ class String(ValidateValue):
     def __setattr__(self, attr, data, check=True):
         if check and attr == "value" and data is not None:
             if not isinstance(data, str):
-                raise Exception("requires string")
+                if isinstance(data, int):
+                    data = str(data)
+                else:
+                    raise Exception("requires string")
             if self.max and len(data) > self.max:
                 raise Exception(f"Value too large. The default limit is {self.max}")
         super().__setattr__(attr, data)

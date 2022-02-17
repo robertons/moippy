@@ -1,11 +1,15 @@
 
-from moippy.utils.juno import *
+from moippy.utils.moip import *
 from moippy import CreditCard
 
 
-def Tokenize(hash: str):
-    data = Post("/credit-cards/tokenization", {
-        'creditCardHash': hash
+def AddCreditCard(customer_id: str, creditCard:CreditCard):
+    data = Post(f"/customers/{customer_id}/fundinginstruments", {
+        "method": "CREDIT_CARD",
+        "creditCard": creditCard.toJSON(),
     })
-    data['creditCardHash'] = hash
-    return CreditCard(**data)
+    if 'creditCard' in data:
+        creditCard.load(**data['creditCard'])
+
+def DeleteCreditCard(creditcard_id: str):
+    Delete(f"/fundinginstruments/{creditcard_id}", {})

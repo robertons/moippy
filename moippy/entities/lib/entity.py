@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from .datatype import *
-from moippy.utils.juno import *
+from moippy.utils.moip import *
 
-__methods__ = ['toJSON', 'load', 'add', 'Create', 'Update', 'Get',
-               'Delete', 'Deactivate', 'Reactivate', 'Cancel', 'Complete', 'SendFiles']
+__methods__ = ['toJSON', 'load', 'add', 'Create', 'Update', 'Get', 'Capture', 'Refund',
+               'Delete', 'Reverse', 'Cancel', 'Complete', 'SendFiles']
 
 
 def EncodeValue(o, format=None):
@@ -22,7 +22,7 @@ def EncodeValue(o, format=None):
         raise e
 
 
-class JunoEntity():
+class MoipEntity():
 
     def __init__(self, aliases=None, context=None, **kw):
         self.__metadata__['data'] = {}
@@ -68,8 +68,10 @@ class JunoEntity():
                     self[key].value = self[key].type(context={'entity': self, 'key': key}, **data)
         elif hasattr(data, '__class__') and data.__class__.__name__ == self[key].type.__name__:
             self.__setattr__(key, data)
+        elif not data or len(data) == 0:
+            pass
         else:
-            raise Exception("entity.add requires key and dict of object data")
+            raise Exception("entity.add requires key and object data")
 
     def __getitem__(self, field):
         return super().__getattribute__(field) if hasattr(self, field) else None
@@ -132,7 +134,7 @@ class JunoEntity():
                 if self.id is not None and self.__requireid__ == True:
                     route = f"{route}/{self.id}"
                     self.id = None
-            data = Patch(route, self.toJSON())
+            data = Put(route, self.toJSON())
             self.load(**data)
         else:
             raise Exception("Method Update not allowed this object")

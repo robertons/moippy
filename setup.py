@@ -9,7 +9,7 @@ with open('requirements.txt') as reqs:
 
 setuptools.setup(
     name='moippy',
-    version='0.0.1',
+    version='0.0.3',
     description='SDK Python3 para Integração com Moip/Wirecard  API V2',
     author='Roberto Neves',
     author_email='robertonsilva@gmail.com',
@@ -20,7 +20,7 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     license='MIT',
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
+        'Development Status :: 1 - Planning',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'Natural Language :: Portuguese (Brazilian)',
