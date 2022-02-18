@@ -28,6 +28,13 @@ class MoipEntity():
         self.__metadata__['data'] = {}
         self.__metadata__['relasionships'] = {}
         self.__context__ = context
+
+        if 'resourceToken' in kw:
+            self.resourceToken = kw['resourceToken']
+            del kw['resourceToken']
+        else:
+            self.resourceToken = None
+
         self.load(**kw)
 
     def load(self, **kw):
@@ -114,12 +121,9 @@ class MoipEntity():
         except Exception as e:
             raise e
 
-    def Create(self, resourceToken=None):
+    def Create(self):
         if hasattr(self, '__route__'):
-            aditional_header = None
-            if not resourceToken is None:
-                aditional_header = {'resourceToken':resourceToken}
-            data = Post(self.__route__, self.toJSON(), aditional_header)
+            data = Post(self.__route__, self.toJSON(), None if self.resourceToken is None else {'resourceToken': self.resourceToken})
             self.load(**data)
         else:
             raise Exception("Method Create not allowed this object")
@@ -134,7 +138,7 @@ class MoipEntity():
                 if self.id is not None and self.__requireid__ == True:
                     route = f"{route}/{self.id}"
                     self.id = None
-            data = Put(route, self.toJSON())
+            data = Put(route, self.toJSON(), None if self.resourceToken is None else {'resourceToken': self.resourceToken})
             self.load(**data)
         else:
             raise Exception("Method Update not allowed this object")
@@ -147,8 +151,7 @@ class MoipEntity():
                 if self.__requireid__ == True and self.id is None:
                     raise Exception("ID object required")
                 route = f"{route}/{self.id}"
-            data = Get(route, {'resourceToken': self.resourceToken} if hasattr(
-                self, 'resourceToken') and not self.resourceToken is None else None)
+            data = Get(route, None if self.resourceToken is None else {'resourceToken': self.resourceToken})
             self.load(**data)
         else:
             raise Exception("Method Get not allowed this object")
@@ -161,7 +164,7 @@ class MoipEntity():
                 if self.id is None:
                     raise Exception("ID object required")
                 route = f"{route}/{self.id}"
-            Delete(route)
+            Delete(route, None if self.resourceToken is None else {'resourceToken': self.resourceToken})
         else:
             raise Exception("Method Delete not allowed this object")
         self = None

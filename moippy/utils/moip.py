@@ -13,7 +13,7 @@ DEBUG = False
 TOKEN = ''
 KEY = ''
 ACCESS_TOKEN = ''
-SANDBOX = True
+SANDBOX = False
 BASIC = True
 
 def DebugRequest():
@@ -26,7 +26,7 @@ def DebugRequest():
     requests_log.propagate = True
 
 
-def Moip(private_token, private_key, access_token='', sandbox=True, debug=False):
+def Moip(private_token, private_key, access_token='', sandbox=False, debug=False):
     if debug:
         DebugRequest()
     global TOKEN
@@ -35,6 +35,7 @@ def Moip(private_token, private_key, access_token='', sandbox=True, debug=False)
     global DEBUG
     global BASIC
     global ACCESS_TOKEN
+
     TOKEN = private_token
     KEY = private_key
     DEBUG = debug
@@ -42,18 +43,20 @@ def Moip(private_token, private_key, access_token='', sandbox=True, debug=False)
     BASIC = access_token == ''
     ACCESS_TOKEN = access_token
 
-
 def GenHashToken():
     return base64.b64encode(f'{TOKEN}:{KEY}'.encode("utf-8")).decode("utf-8")
 
 def __headers(data=None, aditional_header=None):
 
     resource_token = data['resourceToken'] if data and 'resourceToken' in data else None
+
     if resource_token is None:
         resource_token = aditional_header['resourceToken'] if aditional_header and 'resourceToken' in aditional_header else None
 
     if BASIC:
         hash =  f'Basic {GenHashToken()}'
+    else if 'resourceToken' in aditional_header and aditional_header['resourceToken'] and aditional_header['resourceToken'] != '':
+        hash =  f'OAuth {aditional_header["resourceToken"]}'
     else:
         hash =  f'OAuth {ACCESS_TOKEN}'
 
@@ -62,19 +65,11 @@ def __headers(data=None, aditional_header=None):
         'Authorization': hash
     }
 
-    if resource_token:
-        headers = {**headers, **{'X-Resource-Token': resource_token}}
-
-    if not aditional_header is None:
-        headers = {**headers, **aditional_header}
-
     return headers
-
 
 def __Route(url):
     route = constants.ROUTE_SANDBOX if SANDBOX else constants.ROUTE_PRODUCAO
     return f'{route}{url}'
-
 
 def Get(url, data={}, aditional_header=None):
     return __ValidateResponse(requests.get(__Route(url), params=data, headers=__headers(data, aditional_header)))
@@ -94,7 +89,6 @@ class MoipException(Exception):
         self.detail = detail
 
 def __ValidateResponse(response):
-
     if DEBUG:
         print(f"\n\nResponse Status Code: {response.status_code}")
         try:
