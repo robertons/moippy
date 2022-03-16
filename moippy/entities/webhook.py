@@ -19,3 +19,12 @@ class Webhook(MoipEntity):
 		cls.sentAt = String(max=55)
 
 		super().__init__(**kw)
+
+	def Get(self):
+		route = f"{self.__route__}?resourceId={self.resourceId}&event={self.event}"
+		data = Get(route, None if self.resourceToken is None else {'resourceToken': self.resourceToken})
+		if "webhooks" in data and len(data["webhooks"])>0:
+			self.load(**data["webhooks"][0])
+			return self
+		else:
+			return None

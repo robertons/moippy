@@ -8,7 +8,7 @@ class BankAccount(MoipEntity):
 		cls.__route__ = '/bankaccounts'
 		cls.__metadata__ = {}
 		cls.__requireid__ = True
-		
+
 		# FIELDS
 		cls.id  = String(max=255)
 		cls.type =  String(max=255)
@@ -26,6 +26,6 @@ class BankAccount(MoipEntity):
 		super().__init__(**kw)
 
 	def Create(self, account_id: str):
-		data = Post(f'/accounts/{account_id}/bankaccounts', self.toJSON())
+		data = Post(f'/accounts/{account_id}/bankaccounts', self.toJSON(), None if self.resourceToken is None else {'resourceToken': self.resourceToken})
 		self.load(**data)
 		return self

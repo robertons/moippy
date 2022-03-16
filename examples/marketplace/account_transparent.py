@@ -9,7 +9,7 @@ def main(arg):
 
     moippy.Moip('e0dc7c54ce4e4b53988525f32168ad79_v2', 'b769e7ec74b7417281463ca162060b0d', 'e0dc7c54ce4e4b53988525f32168ad79_v2', sandbox=True, debug=True)
 
-    # CONSULTAR
+    # CRIAR
     account = moippy.MoipAccount(
         email = {
             "address": "robertonsilva@gmail.com"

@@ -55,7 +55,7 @@ def __headers(data=None, aditional_header=None):
 
     if BASIC:
         hash =  f'Basic {GenHashToken()}'
-    else if 'resourceToken' in aditional_header and aditional_header['resourceToken'] and aditional_header['resourceToken'] != '':
+    elif aditional_header and 'resourceToken' in aditional_header and aditional_header['resourceToken'] and aditional_header['resourceToken'] != '':
         hash =  f'OAuth {aditional_header["resourceToken"]}'
     else:
         hash =  f'OAuth {ACCESS_TOKEN}'

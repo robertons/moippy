@@ -4,7 +4,7 @@ from .datatype import *
 from moippy.utils.moip import *
 
 __methods__ = ['toJSON', 'load', 'add', 'Create', 'Update', 'Get', 'Capture', 'Refund',
-               'Delete', 'Reverse', 'Cancel', 'Complete', 'SendFiles']
+               'Delete', 'Reverse', 'Cancel', 'Complete', 'SendFiles', 'resourceToken']
 
 
 def EncodeValue(o, format=None):
@@ -57,8 +57,7 @@ class MoipEntity():
             if "List" in self[key].__class__.__name__:
                 if not key in self.__metadata__['relasionships']:
                     self.__metadata__['relasionships'][key] = []
-                self.__metadata__['relasionships'][key].extend(
-                    data if isinstance(data, list) else [data])
+                self.__metadata__['relasionships'][key].extend([item for item in data if not item in self.__metadata__['relasionships'][key]] if isinstance(data, list) else ([data] if not data in self.__metadata__['relasionships'][key] else []) )
 
                 if hasattr(data, 'values'):
 
@@ -67,7 +66,7 @@ class MoipEntity():
 
                 elif isinstance(data, list):
                     self[key].value.extend([self[key].type(item) if isinstance(item, str) or isinstance(
-                        item, int) else self[key].type(context={'entity': self, 'key': key}, **item) for item in data if not item is None])
+                        item, int) else self[key].type(context={'entity': self, 'key': key}, **item) for item in data if not item is None and not item in self[key].value])
             else:
                 data = data[0] if isinstance(data, list) else data
                 if any(data.values()):

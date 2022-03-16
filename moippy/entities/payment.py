@@ -13,6 +13,7 @@ class Payment(MoipEntity):
 		# FIELDS
 		cls.id = String(max=55)
 		cls.installmentCount = Int()
+		cls.amount = Obj(context=cls, key='amount', name='Amount')
 		cls.cancellationDetails = Obj(context=cls, key='cancellationDetails', name='CancellationDetails')
 		cls.fundingInstrument = Obj(context=cls, key='fundingInstrument', name='FundingInstrument')
 		cls.delayCapture = Boolean()
